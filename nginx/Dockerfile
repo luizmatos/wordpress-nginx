@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-RUN apk add bash openssl
+RUN apk add bash openssl curl
 
 RUN rm -f /etc/nginx/conf.d/default.conf
 RUN rm -f /etc/nginx/conf.d/example_ssl.conf

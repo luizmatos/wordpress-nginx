@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: mysql
+spec:
+  hosts:
+    - 35.231.219.205
+  ports:
+    - number: 3306
+      name: tls
+      protocol: TLS
+  resolution: DNS
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: mysql
+spec:
+  hosts:
+    - 35.231.219.205
+  tls:
+    - match:
+        - port: 3306
+          sni_hosts:
+            - 35.231.219.205
+      route:
+        - destination:
+            host: wordpress
+          weight: 100

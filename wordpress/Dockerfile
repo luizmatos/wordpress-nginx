@@ -4,6 +4,8 @@ ENV WORDPRESS_VERSION 5.1
 
 VOLUME /var/www/html
 
+RUN apk add --no-cache sed
+
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
 	tar -xzf wordpress.tar.gz -C /usr/src/; \
